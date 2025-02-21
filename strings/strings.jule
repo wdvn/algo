@@ -1,0 +1,44 @@
+struct Trie {
+	v:        str
+	mut root: &TrieNode
+}
+
+struct TrieNode {
+	isComplete: bool
+	mp:         map[rune]&TrieNode
+}
+
+impl Trie {
+	fn Search(self, s: str): bool {
+		let mut node = self.root
+		let chars = []rune(s)
+
+		let mut i = 0
+		for i < len(chars); i++ {
+			if node.mp[chars[i]] == nil {
+				ret false
+			}
+			node = node.mp[chars[i]]
+		}
+		ret node.isComplete
+	}
+	fn Insert(self, word: str) {
+		let mut node = self.root
+		let chars = []rune(word)
+		let mut i = 0
+		for i < len(chars); i++ {
+			if node.mp[chars[i]] == nil {
+				node.mp[chars[i]] = &TrieNode{false, (map[rune]&TrieNode)({})}
+			}
+			node = node.mp[chars[i]]
+		}
+		node.isComplete = true
+	}
+}
+
+fn NewTrie(s: str): &Trie {
+	let mut mp: map[rune]&TrieNode = {}
+	let mut trie = &Trie{s, &TrieNode{false, mp}}
+	trie.Insert(s)
+	ret trie
+}
