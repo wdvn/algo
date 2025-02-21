@@ -1,5 +1,4 @@
 struct Trie {
-	v:        str
 	mut root: &TrieNode
 }
 
@@ -36,9 +35,8 @@ impl Trie {
 	}
 }
 
-fn NewTrie(s: str): &Trie {
+fn NewTrie(): &Trie {
 	let mut mp: map[rune]&TrieNode = {}
-	let mut trie = &Trie{s, &TrieNode{false, mp}}
-	trie.Insert(s)
+	let mut trie = &Trie{ &TrieNode{false, mp}}
 	ret trie
 }

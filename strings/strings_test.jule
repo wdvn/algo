@@ -1,0 +1,17 @@
+#build test
+
+use "std/testing"
+use "std/fmt"
+
+#test
+fn testTrie(t: &testing::T){
+    let dictionary: []str= ["word1","word3","word2","abc"]
+    let words :[]str =["word","word1","abc","ac"]
+    let trie= NewTrie()
+    for i in dictionary{
+        trie.Insert(dictionary[i])
+    }
+    for i in words{
+        fmt::Println(words[i],trie.Search(words[i]))
+    }
+}
